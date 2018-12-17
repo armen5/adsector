@@ -1,0 +1,138 @@
+li {
+    list-style: none;
+}
+ul{
+	padding: 0
+}
+#menu {
+	height: 80px;
+	border-bottom: 1px solid #d0d0d0;
+	background: url('../images/bg.jpg');
+}
+.fixed {
+	position: fixed;
+}
+.lt1 {
+	letter-spacing: 1px;
+}
+.menu-content {
+	list-style-type: none;
+	align-items: center !important;
+}
+
+.menu-content a {
+	text-decoration: none !important;
+	font-weight: bold;
+	text-transform: uppercase;
+	transition: all 0.8s ease;
+}
+.menu-content a:hover {
+	color: #0074cf;
+	transition: all 0.8s ease;
+}
+.login_btn_style {
+	background: #5b7af8;
+	color: #fff !important;
+	border-radius: 10px;
+	padding: 6px 30px;
+}
+.login_btn_style:hover {
+	color: #fff;
+}
+footer{
+    float: left;
+    width: 100%;
+    background: #fff;
+    padding: 54px 0;
+    border-top: 2px solid #edf5fd;
+}
+ul.list-ftr {
+    width: auto;
+    float: none;
+    margin: 0 auto;
+    display: table;
+    color: #6b6b6b;
+}
+ul.list-ftr, .p1-ftr {
+    font-size: 20px;
+    line-height: 13px;
+}
+ul li:first-child {
+    padding-left: 0;
+}
+
+ul.list-ftr li {
+    float: left;
+    padding: 0 13px;
+    border-right: 1px solid #6b6b6b;
+}
+ul.list-ftr li a {
+    color: #6b6b6b;
+}
+ul li:last-child {
+    padding-right: 0;
+    border-right: none;
+}
+.p1-ftr {
+    text-align: center;
+    width: 100%;
+    color: #b1b0b0;
+    padding-top: 27px;
+    float: left;
+}
+
+ul.list-ftr, .p1-ftr {
+    font-size: 20px;
+    line-height: 13px;
+}
+.banner {
+    float: left;
+    width: 100%;
+    background: url(../images/bg-bnr.jpg) no-repeat center top;
+    height: 669px;
+}
+.container-bnr {
+    position: relative;
+}
+.p1-bnr {
+    text-align: left;
+    padding-top: 145px;
+}
+
+.p1-bnr, .p1-abt {
+    font-size: 52px;
+    line-height: 52px;
+    text-transform: uppercase;
+}
+.for-mob {
+    display: none;
+}
+.p2-bnr {
+    text-align: left;
+}
+
+.p2-bnr, .p2-abt {
+    font-size: 24px;
+    line-height: 30px;
+    padding-top: 11px;
+}
+
+.btn-bnr {
+    font-size: 20px;
+    line-height: 20px;
+    padding: 18px 0 14px;
+    margin: 56px 0 0 12px;
+    width: 222px;
+    border-radius: 28px;
+    float: left;
+}
+.btn-txt {
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    text-transform: uppercase;
+    background: #5b7af8;
+    -webkit-box-shadow: 0px 8px 14px 2px #cedbfc;
+    -moz-box-shadow: 0px 8px 14px 2px #cedbfc;
+    box-shadow: 0px 8px 14px 2px #cedbfc;
+}
