@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-center m-t-10">
+        <div class="col-md-5">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header"><i class="fa fa-lock"></i> {{ __('Password Reset') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -17,11 +17,10 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                        <div class="form-group">
+                            <div class="form-field">
+                                <i class = "fa fa-envelope"></i>
+                                <input id="email" placeholder = "Email Address" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -32,15 +31,22 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                            <div class="col-md-6 offset-md-3">
+                                <button type="submit" class="btn btn-submit">
+                                    {{ __('Reset') }}
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+            <div class="login_page--call_to_action">
+                Not registered?
+                <a href="/register" class="login_page--register_link" target="_self">
+                    SIGN UP NOW!
+                </a>
+            </div>
+            
         </div>
     </div>
 </div>
