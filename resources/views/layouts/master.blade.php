@@ -79,114 +79,13 @@
 							</select>
 							<i class="fa fa-calendar-o"></i>
 						</div>
-					</fieldset>
-					<div class="header" data-toggle="collapse" data-target="#filters1">
-						<i class="fa fa-sliders icons"></i>filter
-					</div>
-					<fieldset class="collapse in" id="filters1" aria-expanded="true">
-						<div class="form-group">
-							<div class="form-control">
-								<select name="country" id="country" multiple="multiple" class="">
-									<option value="image">Image</option>
-									<option value="video">Video</option>
-								</select>
-								<i class="fa fa-globe"></i>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="form-control">
-								<select name="type" id="type" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-picture-o"></i>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="form-control">
-								<select name="position" id="position" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-compass"></i>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="form-control">
-								<select name="gender" id="gender" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-venus-mars"></i>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="form-control">
-								<select name="relashionship" id="relashionship" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-heart"></i>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="form-control">
-								<select name="age" id="age" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-calendar"></i>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="form-control">
-								<select name="interested" id="interested" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-cube"></i>
-							</div>
-						</div>
-					</fieldset>
-					<div data-target="#filters2" class="header" data-toggle="collapse">
-						<i class="icons fa fa-globe"></i> Lander Props
-					</div>
-					<fieldset class="collapse in sidebar--filters_lander" id="filters2">
-						<div class="form-group">
-							<div class="form-control">
-								<select name="affiliate" id="affiliate" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-bullhorn"></i>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="form-control">
-								<select name="tracking" id="tracking" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-bar-chart"></i>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="form-control">
-								<select name="ecommerce" id="ecommerce" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-shopping-cart"></i>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="form-control">
-								<select name="funnel" id="funnel" multiple="multiple" class="">
-									<option value="">Image</option>
-									<option value="">Video</option>
-								</select>
-								<i class="fa fa-filter"></i>
-							</div>
+						<div class="form-control">
+							<select name="country" id="country" multiple="multiple" class="">
+								<option value="image">Armenia</option>
+								<option value="video">Russia</option>
+								<option value="video">New York</option>
+							</select>
+							<i class="fa fa-globe"></i>
 						</div>
 					</fieldset>
 					<div class="sidebar--action">

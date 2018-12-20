@@ -14,7 +14,7 @@
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/dashboard', 'AppController@index')->name('dashboard');
 Route::get('/', 'PagesController@index')->name('landing');
 Route::get('/features', 'PagesController@features')->name('features');
 Route::get('/about', 'PagesController@about')->name('about');
