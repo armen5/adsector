@@ -224,7 +224,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'FacebookAds' => LaravelFacebookAds\Facades\FacebookAds::class,
+        // 'FacebookAds' => LaravelFacebookAds\Facades\FacebookAds::class,
+        'FacebookAds' => Edbizarro\LaravelFacebookAds\Facades\FacebookAds::class
+
 
     ],
 
