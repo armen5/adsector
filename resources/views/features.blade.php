@@ -18,8 +18,8 @@
 
 <div class="strip">
 	<div class="container">
-		<p class="p1-strip wow slideInLeft">Is It Too Late to Work With AdSector?</p>
-		<p class="p2-strip cmntxt wow slideInRight">It’s never too late to make the right move. AdSector will help steer you in the right direction to create the absolute most effective messages seen in an affiliate marketing campaign.</p>
+		<p class="p1-strip wow slideInLeft">More Than Half The Price Of The Competition</p>
+		<p class="p2-strip cmntxt wow slideInRight">Get signed up today and take your business to new heights</p>
 		<a href="/register"><p class="btn-txt p3-strip wow zoomIn">Try It now!</p></a>
 	</div>
 </div>

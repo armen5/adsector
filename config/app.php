@@ -174,7 +174,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        LaravelFacebookAds\LaravelFacebookAdsProvider::class,
 
     ],
 
@@ -223,9 +222,7 @@ return [
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
-        'View' => Illuminate\Support\Facades\View::class,
-        // 'FacebookAds' => LaravelFacebookAds\Facades\FacebookAds::class,
-        'FacebookAds' => Edbizarro\LaravelFacebookAds\Facades\FacebookAds::class
+        'View' => Illuminate\Support\Facades\View::class
 
 
     ],
