@@ -18,3 +18,14 @@ Route::get('/dashboard', 'AppController@index')->name('dashboard');
 Route::get('/', 'PagesController@index')->name('landing');
 Route::get('/features', 'PagesController@features')->name('features');
 Route::get('/about', 'PagesController@about')->name('about');
+//Route::post('/register','Auth\RegisterController@validator')->name('register');
+
+Route::get('/checkout',"PaymentController@checkout")->name('checkout');
+
+Route::get('/message',function(){
+	return view('paypal.message');
+});
+// route for processing payment
+Route::post('paypal', 'PaymentController@payWithpaypal');
+// route for check status of the payment
+Route::get('status', 'PaymentController@getPaymentStatus');

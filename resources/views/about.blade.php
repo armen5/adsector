@@ -4,8 +4,8 @@
 <div class="section1-abt">
 	<div class="container">
 		<p class="p1-abt wow slideInLeft">about us</p>
-		<p class="p2-abt w4-abt wow slideInRight">Proprietary filtering functions, target market interests, downloadable landing pages all on a clean, simple interface.</p>
-		<p class="p3-abt cmntxt m1-abt w5-abt wow zoomIn">Filter ads by Affiliate Network and Tracking System and instantly view target market interests. <span>AdSector</span> is your competitive advantage: The information you need, organized so you can use it. Find and download winning ads and landing pages in seconds! Finally, figure out the right offer and tracking system to use to easily deploy the most successful campaigns.</p>
+		<p class="p2-abt w4-abt wow slideInRight">One of the most frustrating parts about running an ecommerce business is consistently finding products that sell well. Most people who get started in ecommerce, end up quitting because of the frustration that comes with testing products that don't convert and losing money.</p>
+		<p class="p3-abt cmntxt m1-abt w5-abt wow zoomIn">We are ecommerce sellers ourselves so we know exactly what goes into finding winning products. We have tried to guess what products will work and lost thousands of dollars testing. And that is why we created AdGrabr.</p>
 		<div class="points1-abt">
 			<div class="points1in-abt points1in1-abt wow slideInLeft">
 				<center><img src="/images/ic1-sec1abt.png" class="ic-sec1abt ic1-sec1abt"></center>
@@ -22,8 +22,7 @@
 				<p class="p4-abt">Succeed</p>
 			</div>
 		</div>
-		<p class="p3-abt cmntxt m2-abt w5-abt wow zoomIn">Instantly view target market interest. <span>AdSector</span> allows you to filter by any interest. This helps streamline your research; saving tons of time finding just the right ads. The information you need is then organized and stored for easy retrieval when you
-			need it.</p>
+		<p class="p3-abt cmntxt m2-abt w5-abt wow zoomIn">AdGrabr gives you the ability to find out exactly what is already working in ecommerce in your market right now! Find products that are selling recently so that you can pull a profit fast. Stop guessing and start profiting with AdGrabr.</p>
 	</div>
 </div>
 

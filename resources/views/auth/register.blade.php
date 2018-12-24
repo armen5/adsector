@@ -10,16 +10,40 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
+                        <div class="row d-flex justify-content-center pb-2 " id="row-product_id_page-0-0" >
+                            <div class="element-title">
+                                <label for="product_id_page-0-0"><span class="required">* </span>Membership Type</label>
+                            </div>
+                            <div class="element">
+                                <label for='product-1-1'>
+                                    <input type='hidden' id='product-1-1' name='product_id_page-0[]' value='1-1' data-first_price="249.00" data-second_price="249.00" data-paysys="" checked="checked"  />
+                                    <span class="am-product-title">Premium subscription</span><span class="am-product-terms">$249.00 for each month</span><span class="am-product-desc"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="amount" value="249.00">
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('first_name'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('first_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
+
+                                @if ($errors->has('last_name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('last_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
