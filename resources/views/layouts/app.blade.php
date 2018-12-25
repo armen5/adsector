@@ -21,9 +21,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url('css/font-awesome.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}" />
 </head>
-<body class="{{ (Request::is('login') || Request::is('register') || Request::is('password/reset')) ? 'auth-container' : ''}}">
+<body class="{{ (Request::is('login') || Request::is('register') || Request::is('password/reset') || Request::is('checkout')) ? 'auth-container' : ''}}">
     <div id="app">
-        @if(Request::is('login') || Request::is('register') || Request::is('password/reset'))
+        @if(Request::is('login') || Request::is('register') || Request::is('password/reset') || Request::is('checkout'))
             <header id = "auth_menu" class = "page-header">
                 <div class="logo-wrapper">
                     <img src="/images/logo.png">
@@ -90,11 +90,11 @@
             @yield('content')
         </main>
     </div>
-    <footer class="{{ (Request::is('login') || Request::is('password/reset') || Request::is('register')) ? 'hidden' : '' }}">
+    <footer class="{{ (Request::is('login') || Request::is('password/reset') || Request::is('register') || Request::is('checkout')) ? 'hidden' : '' }}">
         <div class="container">
             <ul class="list-ftr">
-                <li><a href="/terms" rel="nofollow">Terms</a></li>
-                <li><a href="/refunds" rel="nofollow">Refunds</a></li>
+                <li><a href="#" rel="nofollow">Terms</a></li>
+                <li><a href="#" rel="nofollow">Refunds</a></li>
             </ul>
             <p class="p1-ftr">Copyright © 2018 AdSector</p>
         </div>

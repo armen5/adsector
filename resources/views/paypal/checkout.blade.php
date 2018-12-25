@@ -1,37 +1,33 @@
-<html>
-<head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-<body>
-    <div class="w3-container">
-        @if ($message = Session::get('success'))
-        <div class="w3-panel w3-green w3-display-container">
-            <span onclick="this.parentElement.style.display='none'"
-    				class="w3-button w3-green w3-large w3-display-topright">&times;</span>
-            <p>{!! $message !!}</p>
-        </div>
-        <?php Session::forget('success');?>
-        @endif
+@extends('layouts.app')
 
-        @if ($message = Session::get('error'))
-        <div class="w3-panel w3-red w3-display-container">
-            <span onclick="this.parentElement.style.display='none'"
-    				class="w3-button w3-red w3-large w3-display-topright">&times;</span>
-            <p>{!! $message !!}</p>
-        </div>
-        <?php Session::forget('error');?>
-        @endif
+@section('content')
 
-    	<form class="w3-container w3-display-middle w3-card-4 w3-padding-16" method="POST" id="payment-form"
-          action="{!! URL::to('paypal') !!}">
-    	  <div class="w3-container w3-teal w3-padding-16">Paywith Paypal</div>
-    	  {{ csrf_field() }}
-    	  <h2 class="w3-text-blue">Payment Form</h2>
-    	  <p>Demo PayPal form - Integrating paypal in laravel</p>
-    	  <label class="w3-text-blue"><b>Enter Amount</b></label>
-    	  <input class="w3-input w3-border" id="amount" type="text" name="amount"></p>
-    	  <button class="w3-btn w3-blue">Pay with PayPal</button>
-    	</form>
+<div class="container">
+    <div class="row m-t-10">
+        <div class="col-md-5 offset-3">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-paypal"></i>
+                    Payment
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group dflex items-center justify-content-center">
+                        <p class="dinline_block ls1 fs26 fw600">$ 249</p>
+                    </div>
+                    <div>
+                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="TRA2MNQGAFDAQ">
+                            <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-</body>
-</html>
+</div>
+
+@endsection

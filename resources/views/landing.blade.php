@@ -61,20 +61,17 @@
 				<p class="p1-sec2 wow slideInDown">Get In Profit Fast</p>
 				<p class="p2-sec2 wow slideInLeft">Take out the guesswork and get in profit fast. Don't overcomplicate the process by guessing what products will sell. Get momentum with proven winners, and grow your business from there.</p>
 
-				<center>
-					<img src="/images/imgmbl-sec2.jpg" class="img-sec2 for-mob">
-				</center>
 				<p class="p4-sec2 cmntxt mrgn1 wow slideInLeft">
 					<img src="/images/ic1-sec2.png" class="ic-sec2">
-					<span class="span1"><span>Simple Straightforward Interface.</span><br>Get everything you need with just a few clicks of the mouse</span>
+					<span class="span1"><span>Simple Straightforward Interface.</span></span>
 				</p>
 				<p class="p4-sec2 cmntxt mrgn2 wow slideInLeft">
 					<img src="/images/ic2-sec2.png" class="ic-sec2">
-					<span class="span1"><span>Find Products In Your Niche Quickly.</span><br>In seconds you will find the kind of images that help you emotionally connect with your clients.</span>
+					<span class="span1"><span>Find Products In Your Niche Quickly.</span></span>
 				</p>
 				<p class="p4-sec2 cmntxt mrgn2 wow slideInLeft">
 					<img src="/images/ic3-sec2.png" class="ic-sec2">
-					<span class="span1"><span>Scale Your Business.</span><br>Learn everything you can about a successful page in seconds with this simple to sue format.</span>
+					<span class="span1"><span>Scale Your Business.</span></span>
 				</p>
 
 				<a href="#"><p class="p5-sec2 wow zoomIn">Learn more!</p></a>

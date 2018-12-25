@@ -20,7 +20,7 @@ Route::get('/features', 'PagesController@features')->name('features');
 Route::get('/about', 'PagesController@about')->name('about');
 //Route::post('/register','Auth\RegisterController@validator')->name('register');
 
-Route::get('/checkout',"PaymentController@checkout")->name('checkout');
+Route::get('/checkout',"PaymentController@checkout")->name('checkout')->middleware('auth');
 
 Route::get('/message',function(){
 	return view('paypal.message');
@@ -29,3 +29,4 @@ Route::get('/message',function(){
 Route::post('paypal', 'PaymentController@payWithpaypal');
 // route for check status of the payment
 Route::get('status', 'PaymentController@getPaymentStatus');
+Route::get('create_paypal_plan', 'PaypalController@create_plan');

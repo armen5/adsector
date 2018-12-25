@@ -710,7 +710,6 @@ ul.list-ftr, .p1-ftr {
     margin: 12px auto 24px;
     letter-spacing: -0.3px;
 }
-
 .p3-strip, .p3-strip1-abt {
     font-size: 18px;
     line-height: 18px;
@@ -723,7 +722,7 @@ ul.list-ftr, .p1-ftr {
 .section1-fea {
     width: 100%;
     float: left;
-    padding: 82px 0 105px;
+    padding: 82px 0 0px;
     box-sizing: border-box;
     background: url(../images/bg-sec1fea.jpg) no-repeat center top;
 }
@@ -799,7 +798,7 @@ ul.list-ftr, .p1-ftr {
     margin: 40px auto 0;
 }
 .h1-fea {
-    height: 350px;
+    height: auto;
 }
 
 .pointsin-fea {
@@ -808,7 +807,7 @@ ul.list-ftr, .p1-ftr {
     text-align: center;
 }
 .h1-fea {
-    height: 350px;
+    height: auto;
 }
 
 .m2-fea {
@@ -840,7 +839,7 @@ ul.list-ftr, .p1-ftr {
     text-align: left;
 }
 .h1-fea {
-    height: 350px;
+    height: auto;
 }
 ul.list-fea {
     width: 100%;
@@ -1059,3 +1058,36 @@ ul li:last-child {
 .m5-abt {
     margin: 0 30px;
 }
+.p4-sec2 {
+    display: flex;
+    align-items: center !important;
+    margin-bottom: 10px;
+}
+.mb30 {
+    margin-bottom: 30px;
+}
+.mt30 {
+    margin-top: 30px !important;
+}
+.mt50 {
+    margin-top: 50px !important;
+}
+.dflex {
+    display: flex;
+}
+.dinline_block {
+    display: inline-block;
+}
+.items-center {
+    align-items: center;
+}
+.fs26 {
+    font-size: 26px;
+}
+.fw600 {
+    font-weight: 600;
+}
+.ls1 {
+    letter-spacing: 1px;
+}
+
