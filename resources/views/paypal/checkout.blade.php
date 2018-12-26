@@ -16,12 +16,13 @@
                         <p class="dinline_block ls1 fs26 fw600">$ 249</p>
                     </div>
                     <div>
-                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <a href="{{ url('subscribe/paypal') }}"><img src="/images/paypal_subscribe.gif"></a>
+                        <!-- <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_s-xclick">
                             <input type="hidden" name="hosted_button_id" value="TRA2MNQGAFDAQ">
-                            <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
                             <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>

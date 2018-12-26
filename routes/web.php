@@ -14,7 +14,7 @@
 
 Auth::routes();
 
-Route::get('/dashboard', 'AppController@index')->name('dashboard');
+Route::get('/dashboard', 'AppController@index')->name('dashboard')->middleware('isPaymentVerified');
 Route::get('/', 'PagesController@index')->name('landing');
 Route::get('/features', 'PagesController@features')->name('features');
 Route::get('/about', 'PagesController@about')->name('about');
@@ -29,4 +29,8 @@ Route::get('/message',function(){
 Route::post('paypal', 'PaymentController@payWithpaypal');
 // route for check status of the payment
 Route::get('status', 'PaymentController@getPaymentStatus');
-Route::get('create_paypal_plan', 'PaypalController@create_plan');
+Route::any('paypal_return', 'PaypalController@return');
+
+// Route::get('create_paypal_plan', 'PaypalController@create_plan');
+Route::get('/subscribe/paypal', 'PaypalController@paypalRedirect');
+Route::get('/subscribe/paypal/return', 'PaypalController@paypalReturn');
