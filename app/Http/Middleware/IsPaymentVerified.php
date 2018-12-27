@@ -16,10 +16,11 @@ class IsPaymentVerified
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->payment_verified == '1') {
+        $today  = date("Y-m-d H:i:s");
+        $end_payment = Auth::user()->payment_end_date;
+        if (Auth::user() &&  Auth::user()->payment_verified == '1' && ( strtotime($today) < strtotime($end_payment) ) ){
             return $next($request);
         }
-
         return redirect('/checkout');
     }
 }
