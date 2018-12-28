@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
         <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('css/accountMemberView.css') }}">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -14,172 +16,15 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <style>
-    .am-header {
-        overflow: hidden;
-        background: #325069;
-    }
-    .logo-main{
-        padding: 10px;
-        background-color:#4a7498;;
-    }
-    .logo-main a{
-        border-radius: 10px;
-    }
-    .am-header-line {
-        height: 12px;
-        background: #9c9c9c;
-        border-top: 1px solid #bdbdbd;
-        border-bottom: 1px solid #ebebeb;
-    }
-    .content-body-wrapper{
-        position: relative;
-        box-sizing: border-box;
-        padding: 10px 13px 0px 13px;
-        border-color: #dbdbdb;
-        border-width: 0 1px;
-        border-style: solid;
-        background-color: white;
-        height: 100%;
-    }
-    .content-body{
-        box-sizing: border-box;
-        padding: 15px;
-        width: 100%;
-        height: 100%;
-    }
-    .content-body-footer{
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
-        width: 100%;
-        background-color: #254a6d;
-        padding: 5px 20px;
-        font-size: 14px;
-        z-index: 2;
-        color:white;
-    }
-    .am-user-identity-block {
-        font-weight: bold;
-        line-height: 24px;
-    }
-    section{
-        background-color: #ededed;
-        width: 100%;
-        height: 92vh;
-        position: relative;
-        overflow: hidden;
-        font-family: Tahoma, Arial, san-serif;
-    }
-    section a{
-        font-weight: normal;
-        color: #3f7fb0;
-    }
-    .am-account-toolbar ul{
-        background: #f5f5f5;
-        border: 1px solid #ccc;
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-    }
-    .am-account-toolbar ul li{
-        border-right: 1px solid #ccc;
-    }
-     .am-account-toolbar ul a{
-        display: block;
-        box-sizing: content-box;
-        margin: 0;
-        height: 1.5em;
-        line-height: 1.5em;
-        padding: 0.5em 1em;
-        border-right: 1px solid #ccc;
-        color: #555960;
-        font-size: 13px;
-        text-shadow: 0 -1px 1px #c7c8c9;
-        text-decoration: none;
-    }
-    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-        background-color: #e34b3d;
-        border-color: #c7665b;
-        color: white;
-        text-shadow: 0 -1px 1px #c43d33;
-    }
-    .tab-content h3{
-        font-size: 1.4rem;
-        font-weight: normal;
-        color: #333;
-        line-height: 1em;
-        height: auto;
-        margin-bottom: 0.6em;
-    }
-    .am-info {
-        background: #dfe8f0;
-        border: 1px solid #ccddeb;
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        margin-bottom: 1em;
-        padding: 0.5em 1em;
-    }
-    .member-info{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        height: auto;
-        background-color: #f5f5f5;
-        box-sizing: border-box;
-        padding: 10px 0px;
-    }
-    .member-info>div{
-        width: 425px;
-        min-height: 180px;
-        box-sizing: border-box;
-        padding: 0px 5px;
-    }
-    .am-block {
-        color: #666;
-        background: #fff;
-        border: 1px solid #e0e0e0;
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        margin-bottom: 1em;
-        padding: 1em;
-        box-shadow: 0 1px 1px #e0e0e0;
-    }
-    .member-info h4 {
-        font-size: 1.2rem;
-        line-height: 1em;
-        height: auto;
-        margin-bottom: 0.6em;
-    }
-    #menu2 table{
-        border-radius: 3px;
-        border: 1px solid #ddd;
-        border-top: 2px solid #d0d0d0;
-        box-shadow: 0 1px 1px -1px #b0b0b0;
-        background: #fff;
-        margin: 0;
-        padding: 0;
-        text-align: left;
-    }
-    #menu2 td{
-        padding: 15px 0px;
-    }
-    #menu2 tr{
-        border:1px dashed #8a795d;
-    }
-    #menu2 .hide_password_filds{
-        display: none;
-    }
-    </style>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
 </head>
 <body>
     <header style="height: 8vh;position: relative;">
         <nav class="am-header p-0">
           <!-- Brand/logo -->
-          <div class="w-50 m-auto logo-main">
+          <div class="m-auto logo-main">
             <a class="navbar-brand bg-white p-0" href="#" >
                 <img src="{{ asset('images/logo.png') }}" alt="logo" style="padding: 0px 20px;">
             </a>
@@ -190,7 +35,7 @@
         </nav>
     </header>
     <section style="">
-        <div class="content-body-wrapper w-50 m-auto">
+        <div class="content-body-wrapper m-auto">
             <div class="content-body">
 
                 <div class="am-account-toolbar-items">
@@ -216,6 +61,8 @@
 
                   <!-- Tab panes -->
                   <div class="tab-content">
+
+                    <!-- Your Membership Information -->
                     <div id="home" class="container tab-pane active"><br>
                       <h3>Your Membership Information</h3>
                       <div class='member-info'>
@@ -233,52 +80,89 @@
                                 </div>
                               </div>
                           </div>
-                          <div></div>
+                          <div> 
+                                <h4>Useful Links</h4>
+                                <div class="am-block" id="member-main-subscriptions" style="padding: 8px;">
+                                    <ul class="nav nav-pills" role="tablist" style="background: unset;border: unset;">
+                                        <li class="nav-item" style="border: unset;">
+                                            <a class="nav-link menu3" data-toggle="pill" href="#menu3"  style="border: unset;color: #3f7fb0;text-decoration: underline;">Payment History</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                          </div>
                       </div>
                     </div>
+
+
+                    <!-- Create account -->
                     <div id="menu1" class="container tab-pane fade"><br>
                       <h3>Create account</h3>
-                     <div class="am-info">You are logged-in as <strong>jscanlan84</strong>. <a href="/account/logout?amember_redirect_url=%2Faccount%2Fsignup">Logout</a> to signup as new user.</div>
-                      <table>
+                     <div class="am-info">You are logged-in as <strong>{{ $first_name.' '.$last_name }}</strong>. <a href="/logout">Logout</a> to signup as new user.</div>
+                      <table class="w-75 m-auto">
                           <tbody>
-                              <tr>
-                                  <td></td>
-                                  <td></td>
+                              <tr class="mt-2">
+                                  <td class="w-50 text-right "><h5><sup class="text-danger">*</sup> Membership Type</h5></td>
+                                  <td class="d-flex align-items-center"><p style="padding-left: 10px;margin: 0px"><strong style="color:black">Membership Type</strong> <i>${{ $amount }} for each month</i>/</p></td>
                               </tr>
                               <tr>
-                                  <td></td>
-                                  <td></td>
+                                  <td class="w-50 text-right "><h5><sup class="text-danger">*</sup>Payment System</h5></td>
+                                  <td style="vertical-align: top;">
+                                      <div class="custom-control custom-radio" style="padding-left: 35px">
+                                          <input type="radio" class="custom-control-input" id="defaultChecked2" name="defaultExample2" checked disabled="">
+                                          <label class="custom-control-label" for="defaultChecked2">Paypal</label>
+                                      </div>
+                                  </td>
                               </tr>
                               <tr>
-                                  <td></td>
-                                  <td></td>
+                                  <td class="text-right">
+                                      <h5>Enter coupon code</h5>
+                                      <p>*price will be updated on second page*</p>
+                                  </td>
+                                  <td style="vertical-align: top;">
+                                     <div class="row" style="padding-left: 10px">
+                                        <div class="col">
+                                          <input type="text" class="form-control open_input" placeholder="Coupon Code" name="coupon_code" value="">
+                                        </div>
+                                     </div>
+                                  </td>
                               </tr>
                               <tr>
-                                  <td></td>
-                                  <td></td>
+                                  <td class="w-50 text-right "><h5><sup class="text-danger">*</sup> First & Last Name</h5></td>
+                                  <td class="w-50">
+                                   <div class="row" style="padding-left: 10px">
+                                    <div class="col" style="padding-right: 2px">
+                                      <input type="text" class="form-control open_input" placeholder="First name" name="first_name" value="{{ $first_name }}">
+                                    </div>
+                                    <div class="col" style="padding-left: 2px">
+                                      <input type="text" class="form-control open_input" placeholder="Last name" name="last_name" value="{{ $last_name }}">
+                                    </div>
+                                  </div>
+                                  </td>
                               </tr>
                               <tr>
-                                  <td colspan="2" >
-                                      
+                                  <td colspan="2" class="text-center">
+                                      <button type="button" class="btn btn-outline-secondary save_profile">Next</button>
                                   </td>
                               </tr>
                           </tbody>
                       </table>
                     </div>
+
+                    <!-- Customer Profile -->
                     <div id="menu2" class="container tab-pane fade"><br>
-                      <h3>Customer Profile</h3>
-                      <form action=""></form>
+                      <h3 class="first_h3">Customer Profile</h3>
                       <table class="w-75 m-auto">
                           <tbody>
                               <tr>
                                   <td class="w-50 text-right "><h5><sup class="text-danger">*</sup> First & Last Name</h5></td>
                                   <td class="w-50">
                                    <div class="row" style="padding-left: 10px">
-                                    <div class="col">
-                                      <input type="text" class="form-control" placeholder="First name">
+                                    <div class="col" style="padding-right: 2px">
+                                      <input type="text" class="form-control open_input" placeholder="First name" name="first_name" value="{{ $first_name }}">
                                     </div>
-                                    <div class="col">
-                                      <input type="text" class="form-control" placeholder="Last name">
+                                    <div class="col" style="padding-left: 2px">
+                                      <input type="text" class="form-control open_input" placeholder="Last name" name="last_name" value="{{ $last_name }}">
                                     </div>
                                   </div>
                                   </td>
@@ -291,7 +175,7 @@
                                   <td style="vertical-align: top;">
                                      <div class="row" style="padding-left: 10px">
                                         <div class="col">
-                                          <input type="text" class="form-control" placeholder="First name">
+                                          <input type="email" class="form-control open_input" placeholder="E-Mail" name="email" value="{{ $email }}">
                                         </div>
                                      </div>
                                   </td>
@@ -301,57 +185,110 @@
                                       <h5>password</h5>
                                   </td>
                                   <td style="vertical-align: top;">
-                                      <span class="open_password_filds" style="padding-left: 10px;cursor: pointer;">change</span>
+                                      <span class="open_password_filds">change</span>
                                   </td>
-                                  <script>$('.open_password_filds').click(function(){ $('.hide_password_filds').show();$(this).parents('tr').hide()})</script>
+                                  <script>
+                                        $(function(){
+                                           var change_password = true; 
+                                           $('.open_password_filds').click(function(){
+                                                $('.hide_password_filds').show();
+                                                $('.hide_password_filds').find('input').addClass('open_input');
+                                                $(this).parents('tr').hide();
+                                            }) 
+                                        })
+                                  </script>
                               </tr>
                               <tr class="hide_password_filds">
                                   <td class="text-right">
-                                      <h5><sup class="text-danger">*</sup> Your E-Mail Address</h5>
-                                      <p>a confirmation email will be sent to you at this address</p>
+                                      <h5>Your Current Password</h5>
+                                      <p>if you are changing password, please enter your current password for validation</p>
                                   </td>
                                   <td style="vertical-align: top;">
                                      <div class="row" style="padding-left: 10px">
                                         <div class="col">
-                                          <input type="text" class="form-control" placeholder="First name">
+                                          <input type="password" class="form-control" placeholder="Current Password" name="current_password" value="">
+
                                         </div>
                                      </div>
                                   </td>
                               </tr>
                               <tr class="hide_password_filds">
                                   <td class="text-right">
-                                      <h5><sup class="text-danger">*</sup> Your E-Mail Address</h5>
-                                      <p>a confirmation email will be sent to you at this address</p>
+                                      <h5>New Password</h5>
+                                      <p>you can choose new password here or keep it unchanged  must be 6 or more characters</p>
                                   </td>
                                   <td style="vertical-align: top;">
                                      <div class="row" style="padding-left: 10px">
                                         <div class="col">
-                                          <input type="text" class="form-control" placeholder="First name">
+                                          <input type="password" class="form-control" placeholder="New Password" name="password" value="">
                                         </div>
                                      </div>
                                   </td>
                               </tr>
                               <tr class="hide_password_filds">
                                   <td class="text-right">
-                                      <h5><sup class="text-danger">*</sup> Your E-Mail Address</h5>
-                                      <p>a confirmation email will be sent to you at this address</p>
+                                      <h5>Confirm New Password</h5>
                                   </td>
                                   <td style="vertical-align: top;">
                                      <div class="row" style="padding-left: 10px">
                                         <div class="col">
-                                          <input type="text" class="form-control" placeholder="First name">
+                                          <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation" value=""> 
                                         </div>
                                      </div>
                                   </td>
                               </tr>
                               <tr>
                                   <td colspan="2" class="text-center">
-                                      <button class="btn btn-premary text-info">Save Profile</button>
+                                      <button type="button" class="btn btn-outline-secondary save_profile">Save Profile</button>
                                   </td>
                               </tr>
                           </tbody>
                       </table>
                     </div>
+                    {{-- Payment History  --}}
+                    <div id="menu3" class="container tab-pane fade" style="padding-top: 25px;">
+                        <h3>Your Subscriptions</h3>
+                        @if(count($data) !=0 )
+                          <div class="am-active-invoice" style="margin-bottom: 15px">
+                              <div class="am-active-invoice-header">
+                                  <span class="am-active-invoice-date">{{ date("Y-m-d",strtotime($data[count($data)-1]->date)) }}</span> <!-- first subscript date-->
+                                  <span class="am-active-invoice-num"><strong style="color:black">#97RHC</strong></span><!-- subscript id -->
+                                  <span class="am-active-invoice-paysys">PayPal</span>,<!-- payment method -->
+                                  <span class="am-active-invoice-terms"><i style="color:#303030">${{$amount}}.00 for each month</i></span><!-- payment amount -->
+                                  <span><a class="cancel-subscription local-link" href="/account/payment/paypal/cancel">cancel</a></span> 
+                                  <span class="am-active-invoice-cancel"></span><!-- last subscr date -->
+                              </div>
+                              <ul class="am-active-invoice-product-list">
+                                  <li class="am-active-invoice-product">
+                                      <span class="am-active-invoice-item-title">Premium subscription</span>
+                                  </li>
+                              </ul>
+                          </div>
+                        @endif
+                        <table id="example" class="table table-striped table-bordered" style="width:100%;">
+                          <thead class="">
+                              <tr>
+                                  <th>Date</th>
+                                  <th>PayerID</th>
+                                  <th>Products</th>
+                                  <th>Payment System</th>
+                                  <th>Amount</th>
+                              </tr>
+                          </thead>
+                          <tbody class="">
+                              @foreach($data as $key => $value)
+                                 <tr>
+                                   <td>{{ $value->date }}</td>
+                                   <td>{{ $value->payer_id }}</td>
+                                   <td>{{ $value->description }}</td>
+                                   <td>{{ $value->payment_method }}</td>
+                                   <td>{{ "$".$value->amount.".00" }}</td>
+                                 </tr>
+                              @endforeach
+                          </tbody>
+                        </table>
+                    </div>
+
                   </div>
                </div>
             </div>
@@ -361,4 +298,50 @@
         </div>
     </section>
 </body>
+<script>
+    $(function(){
+        $('#example').DataTable({
+                "ordering": false,
+                "pageLength": 7,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bInfo": false,
+                "bAutoWidth": false,
+        });
+        $("#example_wrapper").children('.row:eq(0)').children("div:eq(0)").html('<h3>Payments History</h3>');
+        $(".save_profile").click(function(){
+                var input = new Object();
+                $(".open_input").each(function(index,item){
+                    input[$(this).attr('name')] = $(this).val();
+                })
+                changeProfile(input);
+        });
+
+        function changeProfile(input){
+            var url = '/account/change';
+            var data = { 
+                input : input
+             };
+            $.post(url,data,function(response){
+                $('input').removeClass('is-invalid');
+                $('.invalid-feedback').remove();
+                $('.success_box').remove();
+                if(response != 'success'){
+                    for(var key in response){
+                        $('input[name='+key+']').addClass('is-invalid').after('<div class="invalid-feedback">'+response[key]+'</div>');
+                    }
+                }else{
+                    $('.first_h3').after('<div class="alert alert-info text-center success_box">Your changes have success saved.</div>');
+                    $('.success_box').fadeOut(4000);
+                }
+            })
+        }
+        $(".menu3").click(function(){
+            $(".nav-link").removeClass('active').removeClass('show');
+        })
+        $(".nav-link").click(function(){
+            $(".menu3").removeClass("active").removeClass('active');
+        })
+    });
+</script>
 </html>

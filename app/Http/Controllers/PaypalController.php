@@ -24,6 +24,9 @@ use PayPal\Api\Plan;
 use PayPal\Auth\OAuthTokenCredential;
 // use to process billing agreements
 use PayPal\Rest\ApiContext;
+use PayPal\Api\AgreementStateDescriptor;
+use PHPUnit\TextUI\ResultPrinter;
+
 
 class PaypalController extends Controller {
 	private $apiContext;
@@ -181,6 +184,30 @@ class PaypalController extends Controller {
 		}
 	}
     public function paymentCancel(){
-
+        // # Reactivate an agreement
+        //
+        // This sample code demonstrate how you can reactivate a billing agreement, as documented here at:
+        // https://developer.paypal.com/docs/api/#suspend-an-agreement
+        // API used: /v1/payments/billing-agreements/<Agreement-Id>/suspend
+        // Retrieving the Agreement object from Suspend Agreement Sample to demonstrate the List
+        /** @var Agreement $suspendedAgreement */
+        $suspendedAgreement = new Agreement();
+        $suspendedAgreement->setId(Auth::user()->paypal_agreement_id);
+        //Create an Agreement State Descriptor, explaining the reason to suspend.
+        $agreementStateDescriptor = new AgreementStateDescriptor();
+        $agreementStateDescriptor->setNote("Reactivating the agreement");
+        try {
+            $suspendedAgreement->cancel($agreementStateDescriptor, $this->apiContext);
+            // Lets get the updated Agreement Object
+            $agreement = Agreement::get($suspendedAgreement->getId(), $this->apiContext);
+        } catch (Exception $ex) {
+            // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+            // \ResultPrinter::printResult("Reactivate the Agreement", "Agreement", $agreement->getId(), $suspendedAgreement, $ex);
+            exit(1);
+        }
+        // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+       // printResult("Reactivate the Agreement", "Agreement", $agreement->getId(), $suspendedAgreement, $agreement);
+        dd($agreement);
     }
+
 }

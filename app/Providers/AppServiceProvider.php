@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Validation\Rule;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +16,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        \Validator::extendImplicit('current_password', function($attribute, $value, $parameters, $validator)
+        {
+            return \Hash::check($value, auth()->user()->password);
+        });
+
+
+        // \Validator::extendImplicit('email', function($attribute, $value, $parameters, $validator)
+        // {
+        //     return  Rule::unique('users')->ignore(auth()->user()->id);
+        // });
+
     }
 
     /**
