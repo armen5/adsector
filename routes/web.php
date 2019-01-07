@@ -39,5 +39,6 @@ Route::get('/account/payment/paypal/cancel','PaypalController@paymentCancel');
 Route::group(['middleware' => ['isPaymentVerified']], function () {
 	Route::get('/dashboard', 'AppController@index')->name('dashboard');
 	Route::get('/account/member','AppController@accountMemberView');
+	Route::get('/payment/downloadPDF/{payer_id}','AppController@createPDF');
 });
-	Route::post('/account/change','AppController@changeProfile');
+Route::post('/account/change','AppController@changeProfile');

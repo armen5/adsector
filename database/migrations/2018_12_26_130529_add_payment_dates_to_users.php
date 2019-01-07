@@ -14,6 +14,7 @@ class AddPaymentDatesToUsers extends Migration {
 		Schema::table('users', function ($table) {
 			$table->dateTime('payment_start_date');
 			$table->dateTime('payment_end_date');
+			$table->dateTime('payment_cancel_date');
 		});
 	}
 
@@ -26,6 +27,7 @@ class AddPaymentDatesToUsers extends Migration {
 		Schema::table('users', function (Blueprint $table) {
 			$table->dropColumn('payment_start_date');
 			$table->dropColumn('payment_end_date');
+			$table->dropColumn('payment_cancel_date');
 		});
 	}
 }

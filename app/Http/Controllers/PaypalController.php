@@ -26,6 +26,7 @@ use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 use PayPal\Api\AgreementStateDescriptor;
 use PHPUnit\TextUI\ResultPrinter;
+use App\User;
 
 
 class PaypalController extends Controller {
@@ -207,7 +208,8 @@ class PaypalController extends Controller {
         }
         // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
        // printResult("Reactivate the Agreement", "Agreement", $agreement->getId(), $suspendedAgreement, $agreement);
-        dd($agreement);
+        User::where('id',Auth::id())->update(['payment_cancel_date'=>date('Y-m-d H:s:i')]);
+        return redirect()->back();
     }
 
 }

@@ -7,12 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use PDF;
 use App\PaymentsHistory;
 use Illuminate\Validation\Rule;
 
+use FacebookAds\Api;
+use FacebookAds\Object\AdSet;
+use FacebookAds\Object\AdAccount;
+use FacebookAds\Object\Fields\AdSetFields;
+use FacebookAds\Object\Fields\AdAccountFields;
+use FacebookAds\Object\Fields\CampaignFields;
+use FacebookAds\Object\Campaign;
+use LaravelFacebookAds\Clients\Facebook;
 // use LaravelFacebookAds\Clients\Facebook;
 // use LaravelFacebookAds\Services\FacebookAdsService;
-// use Edbizarro\LaravelFacebookAds\Facades\FacebookAds;
+use Edbizarro\LaravelFacebookAds\Facades\FacebookAds;
 
 class AppController extends Controller {
 	/**
@@ -23,9 +32,9 @@ class AppController extends Controller {
 
 	protected $facebookClient;
 
-	public function __construct() {
+	public function __construct(Facebook $facebookClient) {
 		$this->middleware('auth');
-		// $this->facebookClient = $facebookClient;
+        $this->facebookClient = $facebookClient;
 	}
 
 	/**
@@ -35,17 +44,68 @@ class AppController extends Controller {
 	 */
 	public function index() {
 
+        $app_id = env('FB_ADS_APP_ID');
+        $app_secret = env('FB_ADS_APP_SECRET');
+        $access_token = "EAAIf2dIi7ikBABtt13RnREkR6Pzk4tOgc6GOEh6EiikySGep8GgNHFKrRwgOXvmWYdxTxjyZCMckmC0e6EXAlKRmQvMGEZBNyzOek8WMZBMZByZCVgZAWIYphiCLFLbY2ElB5QgUK46Re1gS6J9NjelgErVaZAE8UNZB6HBFCxI2pprJDqZAWMs65XTc4liLZC8vKDb1wWnacHfVQYZCOXwDnMUtBZCoOBfrTlUo62l21rxTsgZDZD";
+        $account_id = env('ACT_ID');
+
+        Api::init($app_id, $app_secret, $access_token);
+
+        $client = $this->facebookClient;
+        // dd($client->account($account_id)->ads());
+
+        
+
+        $account = new AdAccount($account_id);
+        // dd($account->read());
+
+        FacebookAds::init($access_token);
+        $ads = FacebookAds::adAccounts()->all()->map(function ($adAccount) {
+        return $adAccount->ads(
+              [
+                  'name',
+                  'account_id',
+                  'account_status',
+                  'balance',
+                  'campaign',
+                  'campaign_id',
+                  'status'
+              ]
+          );
+        });
+        // dd($ads);
+
+
 		return view('dashboard');
+        $account = new AdAccount($account_id);
+
+        $fields = array(
+            CampaignFields::ID,
+            CampaignFields::NAME,
+            CampaignFields::START_TIME,
+            CampaignFields::STOP_TIME,
+            CampaignFields::SPEND_CAP,
+            'effective_status'
+        );
+
+        $params = array(
+            'effective_status' => array(
+                Campaign::STATUS_ACTIVE
+            ),
+        );
+
+        $campaignSets = $account->getCampaigns($fields, $params);
+        dd($campaignSets);
 	}
+
 	public function accountMemberView() {
 		$end_payment = date("Y-m-d", strtotime(Auth::user()->payment_end_date));
-		$first_name = Auth::user()->first_name;
-		$last_name = Auth::user()->last_name;
-        $email = Auth::user()->email;
-        $amount = 249;
-        $data = PaymentsHistory::where('user_id' , Auth::id())->get();
-		return view('dashboard.accountMemberView', compact('end_payment', 'first_name', 'last_name','email','amount','data'));
+        $user = Auth::user();
+        $PaymentsHistory = PaymentsHistory::where('user_id' , Auth::id())->get();
+        $amount = (int)$PaymentsHistory[0]->amount;
+		return view('dashboard.accountMemberView', compact('end_payment', 'amount','PaymentsHistory','user'));
 	}
+
     public function changeProfile(Request $request,User $user){
         $validator = Validator::make($request->input('input'), [
             'first_name' => 'required|alpha|min:3|max:255',
@@ -74,6 +134,14 @@ class AppController extends Controller {
             }
             return response()->json('success');
         }
+    }
+
+    public function createPDF($payer_id){
+      $user = Auth::user();
+      $payment = PaymentsHistory::where(['user_id' => Auth::id(),'payer_id'=>$payer_id])->get()[0];
+      // return view("dashboard.pdf",compact('payment','user'));
+      $pdf = PDF::loadView('dashboard.pdf', compact('payment','user'));
+      return $pdf->download("$payer_id.pdf");
     }
 
 

@@ -41,7 +41,7 @@
                 <div class="am-account-toolbar-items">
                     <div class="am-user-identity-block">
                         <img src="{{ asset('images/identity-glyph.png') }}" alt="">
-                        <span class="am-user-identity-block_login">{{ $first_name." ".$last_name }}</span>
+                        <span class="am-user-identity-block_login">{{ $user->first_name." ".$user->last_name }}</span>
                         <a href="/account/logout">Logout</a>
                     </div>
                </div>
@@ -51,9 +51,9 @@
                     <li class="nav-item">
                       <a class="nav-link active" data-toggle="pill" href="#home"><img src="{{ asset('images/dashboard.png') }}" alt=""></a>
                     </li>
-                    <li class="nav-item">
+{{--                     <li class="nav-item">
                       <a class="nav-link" data-toggle="pill" href="#menu1">Add/Renew Subscription</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                       <a class="nav-link" data-toggle="pill" href="#menu2">Profile</a>
                     </li>
@@ -70,7 +70,11 @@
                               <div>
                                 <h4>Active Subscriptions</h4>
                                 <div class="am-block" id="member-main-subscriptions">
-                                        <strong>Premium subscription</strong> -next bill {{ $end_payment }} <a class="cancel-subscription local-link" href="/account/payment/paypal/cancel">cancel</a>
+                                  @if(isset ($user->payment_cancel_date) && !empty($user->payment_cancel_date))
+                                    <strong>Premium subscription</strong> -canceled <i>{{ $user->payment_cancel_date }}</i> 
+                                  @else
+                                    <strong>Premium subscription</strong> -next bill {{ $end_payment }} <a class="cancel-subscription local-link" href="/account/payment/paypal/cancel">cancel</a>
+                                  @endif
                                 </div>
                               </div>
                               <div>
@@ -96,9 +100,9 @@
 
 
                     <!-- Create account -->
-                    <div id="menu1" class="container tab-pane fade"><br>
+{{--                     <div id="menu1" class="container tab-pane fade"><br>
                       <h3>Create account</h3>
-                     <div class="am-info">You are logged-in as <strong>{{ $first_name.' '.$last_name }}</strong>. <a href="/logout">Logout</a> to signup as new user.</div>
+                     <div class="am-info">You are logged-in as <strong>{{ $user->first_name.' '.$user->last_name }}</strong>. <a href="/logout">Logout</a> to signup as new user.</div>
                       <table class="w-75 m-auto">
                           <tbody>
                               <tr class="mt-2">
@@ -132,10 +136,10 @@
                                   <td class="w-50">
                                    <div class="row" style="padding-left: 10px">
                                     <div class="col" style="padding-right: 2px">
-                                      <input type="text" class="form-control open_input" placeholder="First name" name="first_name" value="{{ $first_name }}">
+                                      <input type="text" class="form-control open_input" placeholder="First name" name="first_name" value="{{ $user->first_name }}">
                                     </div>
                                     <div class="col" style="padding-left: 2px">
-                                      <input type="text" class="form-control open_input" placeholder="Last name" name="last_name" value="{{ $last_name }}">
+                                      <input type="text" class="form-control open_input" placeholder="Last name" name="last_name" value="{{ $user->last_name }}">
                                     </div>
                                   </div>
                                   </td>
@@ -147,7 +151,7 @@
                               </tr>
                           </tbody>
                       </table>
-                    </div>
+                    </div> --}}
 
                     <!-- Customer Profile -->
                     <div id="menu2" class="container tab-pane fade"><br>
@@ -159,10 +163,10 @@
                                   <td class="w-50">
                                    <div class="row" style="padding-left: 10px">
                                     <div class="col" style="padding-right: 2px">
-                                      <input type="text" class="form-control open_input" placeholder="First name" name="first_name" value="{{ $first_name }}">
+                                      <input type="text" class="form-control open_input" placeholder="First name" name="first_name" value="{{ $user->first_name }}">
                                     </div>
                                     <div class="col" style="padding-left: 2px">
-                                      <input type="text" class="form-control open_input" placeholder="Last name" name="last_name" value="{{ $last_name }}">
+                                      <input type="text" class="form-control open_input" placeholder="Last name" name="last_name" value="{{ $user->last_name }}">
                                     </div>
                                   </div>
                                   </td>
@@ -175,7 +179,7 @@
                                   <td style="vertical-align: top;">
                                      <div class="row" style="padding-left: 10px">
                                         <div class="col">
-                                          <input type="email" class="form-control open_input" placeholder="E-Mail" name="email" value="{{ $email }}">
+                                          <input type="email" class="form-control open_input" placeholder="E-Mail" name="email" value="{{ $user->email }}">
                                         </div>
                                      </div>
                                   </td>
@@ -248,14 +252,18 @@
                     {{-- Payment History  --}}
                     <div id="menu3" class="container tab-pane fade" style="padding-top: 25px;">
                         <h3>Your Subscriptions</h3>
-                        @if(count($data) !=0 )
+                        @if(count($PaymentsHistory) !=0 )
                           <div class="am-active-invoice" style="margin-bottom: 15px">
                               <div class="am-active-invoice-header">
-                                  <span class="am-active-invoice-date">{{ date("Y-m-d",strtotime($data[count($data)-1]->date)) }}</span> <!-- first subscript date-->
-                                  <span class="am-active-invoice-num"><strong style="color:black">#97RHC</strong></span><!-- subscript id -->
+                                  <span class="am-active-invoice-date">{{ date("Y-m-d",strtotime($PaymentsHistory[count($PaymentsHistory)-1]->date)) }}</span> <!-- first subscript date-->
+                                  <span class="am-active-invoice-num"><strong style="color:black">#{{ $PaymentsHistory[count($PaymentsHistory)-1]->payer_id }}</strong></span><!-- subscript id -->
                                   <span class="am-active-invoice-paysys">PayPal</span>,<!-- payment method -->
                                   <span class="am-active-invoice-terms"><i style="color:#303030">${{$amount}}.00 for each month</i></span><!-- payment amount -->
-                                  <span><a class="cancel-subscription local-link" href="/account/payment/paypal/cancel">cancel</a></span> 
+                                  @if(isset($user->payment_cancel_date) && !empty($user->payment_cancel_date))
+                                  <span>canceled <i>{{ $user->payment_cancel_date }}</i></span>
+                                  @else
+                                  <span><a class="cancel-subscription local-link" href="/account/payment/paypal/cancel">cancel</a></span>  
+                                  @endif
                                   <span class="am-active-invoice-cancel"></span><!-- last subscr date -->
                               </div>
                               <ul class="am-active-invoice-product-list">
@@ -276,10 +284,10 @@
                               </tr>
                           </thead>
                           <tbody class="">
-                              @foreach($data as $key => $value)
+                              @foreach($PaymentsHistory as $key => $value)
                                  <tr>
                                    <td>{{ $value->date }}</td>
-                                   <td>{{ $value->payer_id }}</td>
+                                   <td><a class="cancel-subscription local-link" href="/payment/downloadPDF/{{ $value->payer_id }}">{{ $value->payer_id }}</a></td>
                                    <td>{{ $value->description }}</td>
                                    <td>{{ $value->payment_method }}</td>
                                    <td>{{ "$".$value->amount.".00" }}</td>
