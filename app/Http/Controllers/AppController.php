@@ -10,19 +10,16 @@ use App\User;
 use PDF;
 use App\PaymentsHistory;
 use Illuminate\Validation\Rule;
-/*
+
 use FacebookAds\Api;
+use FacebookAds\Object\Ad;
 use FacebookAds\Object\AdSet;
+use FacebookAds\Object\Campaign;
 use FacebookAds\Object\AdAccount;
+use FacebookAds\Object\Fields\AdFields;
 use FacebookAds\Object\Fields\AdSetFields;
 use FacebookAds\Object\Fields\AdAccountFields;
 use FacebookAds\Object\Fields\CampaignFields;
-use FacebookAds\Object\Campaign;
-use LaravelFacebookAds\Clients\Facebook;*/
-// use LaravelFacebookAds\Clients\Facebook;
-// use LaravelFacebookAds\Services\FacebookAdsService;
-// use Edbizarro\LaravelFacebookAds\Facades\FacebookAds;
-
 
 use Facebook\Facebook;
 
@@ -45,58 +42,71 @@ class AppController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-    dd(env('ACT_ID'));
-      $appId = '232405977635045';
-      $appSecret = '499ef46003c22a8da41437f90cb1df40';
-      $person_id = '101270874301166';
-      $userAccessToken = 'EAADTXzu9mOUBAH8ZB0xyJQncMnWbjgoYmsNlI6QyKqppZCOncCc34oq49luCSuQQ37Q4NMIg1A3cl9Pn36kPoVe8yOcgnOcNXyomQOku7SktgznPvOARNjyl0k5Vqkf2sgY40MJmqHrTybA7uVu6ZCdYGFhgRcZD';
-      $access_token = 'EAADTXzu9mOUBAEar9vtBTF5uzj5cJ2CjbqAlPzW35I5uyX4AHocpBJMqx23Ns0S9E86mYW05e3DEfosFhH4wZBFqko0E1BY3qDdWscVe5WyeNkTtd3ZA97f16w25acWKmz5mXmJybHmixoQLXrBhzA2grXdjJrJwtVatohqBkRJtX4j3bfiB596xD9hzNbap5OtPIBga4tmjWH9rv9dhzA8QU4vHxGTmB0vSiqegZDZD';
-      $ACT_ID = '314812122614814';
-
       $fb = new Facebook([
         'app_id' => $appId,
         'app_secret' => $appSecret,
-        'default_graph_version' => 'v2.10',
-        'default_access_token' => $access_token, // optional
-      ]);
-      try {
-          // Returns a `Facebook\FacebookResponse` object
-          $response = $fb->get('/PROFitdev/feed',$access_token);
-        } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-          echo 'Graph returned an error: ' . $e->getMessage();
-          exit;
-        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-          echo 'Facebook SDK returned an error: ' . $e->getMessage();
-          exit;
-        }
-        $graphNode = $response->getGraphNode();
-        dd($graphNode);
+        'default_graph_version' => 'v2.10'
+      ]);//init facebook 
+      
+      $init = Api::init($appId,$appSecret,$access_token);//bussines facebook init
+      $init->setDefaultGraphVersion("3.2.");
+      // echo "<pre>"; var_dump($fb); die;
+try {
+  // Returns a `FacebookFacebookResponse` object
+  $response = $fb->get(
+    "/$user_id/adaccounts",
+    $access_token
+  );
+} catch(FacebookExceptionsFacebookResponseException $e) {
+  echo 'Graph returned an error: ' . $e->getMessage();
+  exit;
+} catch(FacebookExceptionsFacebookSDKException $e) {
+  echo 'Facebook SDK returned an error: ' . $e->getMessage();
+  exit;
+}
+$graphNode = $response->getGraphEdge();
+dd($graphNode);
 
-      // Use one of the helper classes to get a Facebook\Authentication\AccessToken entity.
-        $helper = $fb->getPageTabHelper();
-        dd($helper);
-        // $helper = $fb->getJavaScriptHelper();
-        // $helper = $fb->getCanvasHelper();
-        // $helper = $fb->getPageTabHelper();
+        $ad = new Ad($ACT_ID);
+        $ad->read(array(
+          AdFields::NAME,
+          AdFields::ID
+          
+        ));
 
-      try {
-        // Get the \Facebook\GraphNodes\GraphUser object for the current user.
-        // If you provided a 'default_access_token', the '{access-token}' is optional.
-        // $response = $fb->get("/$person_id/", $access_token);
-        $accessToken = $helper->getAccessToken();
-      } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-        // When Graph returns an error
-        echo 'Graph returned an error: ' . $e->getMessage();
-        exit;
-      } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-        // When validation fails or other local issues
-        echo 'Facebook SDK returned an error: ' . $e->getMessage();
-        exit;
+        // Output Ad name.
+        dd($ad);
+      $user = new AdUser('me');
+      $user->read(array(AdUserFields::ID));
+
+      $accounts = $user->getAdAccounts(array(
+        AdAccountFields::ID,
+        AdAccountFields::NAME,
+      ));
+
+      // Print out the accounts
+      echo "Accounts:\n";
+      foreach($accounts as $account) {
+        echo $account->id . ' - ' .$account->name."\n";
       }
 
-      // $me = $response->getGraphUser();
-      dd($accessToken);
-      exit();
+      // Grab the first account for next steps (you should probably choose one)
+      $account = (count($accounts)) ? $accounts->getObjects()[0] : null;
+      echo "\nUsing this account: ";
+      echo $account->id."\n";
+
+
+
+
+
+
+        $account = new AdAccount('act_299062770747180');
+        $ads = $account->getAds(array(
+          AdFields::NAME,
+          AdFields::FILENAME
+        ));
+
+        dd($ads);die;
 		  return view('dashboard');
 
 	}

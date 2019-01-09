@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c42ac98890176d5ec988782685569c71",
+    "content-hash": "0566a03f58f7b80fc98fd30ec210a9e7",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -332,68 +332,6 @@
             "time": "2018-06-06T03:12:17+00:00"
         },
         {
-            "name": "edbizarro/laravel-facebook-ads",
-            "version": "v0.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/edbizarro/laravel-facebook-ads.git",
-                "reference": "50cfd190aae249a522fd27eb4fc54f552ba3f5a1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/edbizarro/laravel-facebook-ads/zipball/50cfd190aae249a522fd27eb4fc54f552ba3f5a1",
-                "reference": "50cfd190aae249a522fd27eb4fc54f552ba3f5a1",
-                "shasum": ""
-            },
-            "require": {
-                "facebook/php-business-sdk": "^3.1",
-                "php": ">=7.1.13"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.11",
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "~3.0",
-                "phpunit/phpunit": "~7.3"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Edbizarro\\LaravelFacebookAds\\Providers\\LaravelFacebookServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ],
-                "psr-4": {
-                    "Edbizarro\\LaravelFacebookAds\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Eduardo Bizarro",
-                    "email": "edbizarro@gmail.com"
-                }
-            ],
-            "description": "Facebook & Instagram Ads for Laravel 5.6+",
-            "keywords": [
-                "Insights",
-                "ads",
-                "facebook",
-                "instagram",
-                "laravel",
-                "php",
-                "sdk"
-            ],
-            "time": "2018-10-10T19:28:22+00:00"
-        },
-        {
             "name": "egulias/email-validator",
             "version": "2.1.7",
             "source": {
@@ -553,43 +491,6 @@
                 "sdk"
             ],
             "time": "2018-12-11T22:56:31+00:00"
-        },
-        {
-            "name": "facebook/php-ads-sdk",
-            "version": "3.2.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facebook/facebook-php-business-sdk.git",
-                "reference": "ad7ba2351341b12a86ae68927e1e043af893909c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-business-sdk/zipball/ad7ba2351341b12a86ae68927e1e043af893909c",
-                "reference": "ad7ba2351341b12a86ae68927e1e043af893909c",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.6",
-                "symfony/finder": "~2.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "FacebookAds\\": "src/FacebookAds/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "description": "PHP SDK for Facebook Business",
-            "homepage": "https://developers.facebook.com/",
-            "keywords": [
-                "ads",
-                "business",
-                "facebook",
-                "instagram",
-                "page",
-                "sdk"
-            ],
-            "time": "2018-12-13T19:04:01+00:00"
         },
         {
             "name": "facebook/php-business-sdk",
@@ -955,16 +856,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.19",
+            "version": "v5.7.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "5c1d1ec7e8563ea31826fd5eb3f6791acf01160c"
+                "reference": "10cd20294b5668f90ba91996236834e71f7ff670"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5c1d1ec7e8563ea31826fd5eb3f6791acf01160c",
-                "reference": "5c1d1ec7e8563ea31826fd5eb3f6791acf01160c",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/10cd20294b5668f90ba91996236834e71f7ff670",
+                "reference": "10cd20294b5668f90ba91996236834e71f7ff670",
                 "shasum": ""
             },
             "require": {
@@ -1038,7 +939,7 @@
                 "moontoast/math": "^1.1",
                 "orchestra/testbench-core": "3.7.*",
                 "pda/pheanstalk": "^3.0",
-                "phpunit/phpunit": "^7.0",
+                "phpunit/phpunit": "^7.5",
                 "predis/predis": "^1.1.1",
                 "symfony/css-selector": "^4.1",
                 "symfony/dom-crawler": "^4.1",
@@ -1097,7 +998,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-12-18T14:00:38+00:00"
+            "time": "2019-01-08T14:39:11+00:00"
         },
         {
             "name": "laravel/nexmo-notification-channel",
@@ -2484,67 +2385,6 @@
                 "stylesheet"
             ],
             "time": "2016-07-19T19:14:21+00:00"
-        },
-        {
-            "name": "spotonlive/laravel-facebook-ads",
-            "version": "1.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spotonlive/laravel-facebook-ads.git",
-                "reference": "a9130b3b8a52f7409be6c4f3fff6cb2fcf98b066"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spotonlive/laravel-facebook-ads/zipball/a9130b3b8a52f7409be6c4f3fff6cb2fcf98b066",
-                "reference": "a9130b3b8a52f7409be6c4f3fff6cb2fcf98b066",
-                "shasum": ""
-            },
-            "require": {
-                "facebook/php-ads-sdk": "~3.2.0",
-                "laravel/framework": "5.*",
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "mockery/mockery": "~0.9.4",
-                "phpmd/phpmd": "1.4.*",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "LaravelFacebookAds\\LaravelFacebookAdsProvider"
-                    ],
-                    "aliases": {
-                        "FacebookAds": "LaravelFacebookAds\\Facades\\FacebookAdsFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "LaravelFacebookAds\\": "src/LaravelFacebookAds"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nikolaj Petersen",
-                    "email": "nikolaj.lovenhardt@gmail.com",
-                    "homepage": "http://github.com/nikolajlovenhardt"
-                }
-            ],
-            "description": "Facebook integration for Laravel",
-            "homepage": "https://github.com/spotonlive/laravel-facebook-ads",
-            "keywords": [
-                "ads",
-                "facebook",
-                "laravel"
-            ],
-            "time": "2018-11-05T11:58:07+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
